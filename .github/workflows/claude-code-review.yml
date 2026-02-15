@@ -1,0 +1,34 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: Customize the review focus
+          review_prompt: |
+            Review this pull request with focus on:
+            - Code quality and best practices
+            - Potential bugs or security issues
+            - RAG system architecture and integration
+            - FastAPI endpoint design
+            - Vector database operations
+            - Error handling and edge cases
