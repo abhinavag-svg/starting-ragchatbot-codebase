@@ -1,0 +1,21 @@
+## Frontend Changes: Dark/Light Mode Toggle
+
+### Files Modified
+
+**frontend/index.html**
+- Added a theme toggle button in the left sidebar, between the "New Chat" button and the course stats section.
+- The button contains a theme icon (emoji) and a label that update dynamically.
+
+**frontend/style.css**
+- Added a `body.light-mode` ruleset with light theme CSS variable overrides (background, surface, text, border colors).
+- Added `.theme-toggle-button` and `.theme-icon` styles for the new toggle button.
+- Added `body.light-mode` specific overrides for assistant message bubbles, code blocks, and the welcome message to ensure proper contrast in light mode.
+
+**frontend/script.js**
+- Added `themeToggle`, `themeIcon`, and `themeLabel` to the DOM element references.
+- Added `initTheme()` call in the `DOMContentLoaded` handler to restore the saved theme from localStorage on page load.
+- Wired a click event listener on `themeToggle` to `toggleTheme()`.
+- Added three new functions:
+  - `initTheme()`: reads `localStorage.theme` and applies the saved theme on startup.
+  - `toggleTheme()`: detects the current theme and switches to the opposite.
+  - `applyTheme(theme)`: adds/removes the `light-mode` class on `<body>`, updates the button icon and label, and persists the choice to `localStorage`.

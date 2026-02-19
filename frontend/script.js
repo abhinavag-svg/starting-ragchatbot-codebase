@@ -5,7 +5,7 @@ const API_URL = '/api';
 let currentSessionId = null;
 
 // DOM elements
-let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatButton;
+let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatButton, themeToggle, themeIcon, themeLabel;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,8 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     totalCourses = document.getElementById('totalCourses');
     courseTitles = document.getElementById('courseTitles');
     newChatButton = document.getElementById('newChatButton');
+    themeToggle = document.getElementById('themeToggle');
+    themeIcon = document.getElementById('themeIcon');
+    themeLabel = document.getElementById('themeLabel');
 
     setupEventListeners();
+    initTheme();
     createNewSession();
     loadCourseStats();
 });
@@ -33,6 +37,9 @@ function setupEventListeners() {
     
     // New chat button
     newChatButton.addEventListener('click', handleNewChat);
+
+    // Theme toggle
+    themeToggle.addEventListener('click', toggleTheme);
 
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
@@ -185,6 +192,33 @@ function handleNewChat() {
     setTimeout(() => {
         newChatButton.disabled = false;
     }, 300);
+}
+
+// Theme Functions
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        applyTheme('light');
+    }
+}
+
+function toggleTheme() {
+    const isLight = document.body.classList.contains('light-mode');
+    applyTheme(isLight ? 'dark' : 'light');
+}
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.body.classList.remove('light-mode');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Light Mode';
+        localStorage.setItem('theme', 'dark');
+    }
 }
 
 // Load course statistics
