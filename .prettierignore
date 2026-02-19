@@ -1,0 +1,8 @@
+node_modules/
+backend/
+docs/
+*.py
+*.toml
+*.lock
+.git/
+chroma_db/

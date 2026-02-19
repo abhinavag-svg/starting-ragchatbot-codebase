@@ -1,0 +1,44 @@
+Frontend Code Quality Tools - Changes Summary
+=============================================
+
+Files Created:
+--------------
+
+1. .prettierrc
+   - Prettier configuration file for HTML, JS, and CSS formatting.
+   - Settings: printWidth 100, tabWidth 4, singleQuote, trailingComma (es5), LF line endings.
+
+2. .prettierignore
+   - Tells Prettier to skip non-frontend paths: backend/, docs/, Python files, lock files.
+
+3. package.json
+   - Node.js project file adding Prettier (^3.5.0) as a dev dependency.
+   - Defines three npm scripts:
+     - "format"        → auto-format all frontend files with Prettier
+     - "format:check"  → check formatting without modifying files (CI-friendly)
+     - "quality:check" → run the full check-frontend.sh script
+
+4. scripts/check-frontend.sh
+   - Shell script that installs npm deps if missing, then runs Prettier in check mode.
+   - Exits non-zero if any frontend file is not formatted correctly.
+   - Usage: bash scripts/check-frontend.sh
+
+5. scripts/format-frontend.sh
+   - Shell script that installs npm deps if missing, then runs Prettier in write mode.
+   - Automatically formats all .html, .js, and .css files under frontend/.
+   - Usage: bash scripts/format-frontend.sh
+
+Files Modified:
+---------------
+
+6. frontend/script.js
+   - Removed trailing whitespace from blank lines (lines ~32-33 inside setupEventListeners).
+   - Collapsed double blank line between setupEventListeners and the Chat Functions section.
+   - Removed trailing whitespace after `const data = await response.json();`.
+
+7. frontend/style.css
+   - Reformatted the universal selector group from a single line (`*, *::before, *::after`)
+     to the multi-line pattern used consistently elsewhere in the file:
+       *,
+       *::before,
+       *::after {
