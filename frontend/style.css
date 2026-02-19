@@ -176,38 +176,72 @@ header h1 {
     font-weight: 400;
 }
 
-/* Theme Toggle Button */
-.theme-toggle-button {
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    background: var(--background);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    font-size: 0.9rem;
-    font-weight: 500;
+/* Theme Toggle */
+.theme-toggle {
+    width: 64px;
+    height: 32px;
+    background: var(--border-color);
+    border: 2px solid var(--border-color);
+    border-radius: 32px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
+    justify-content: space-between;
+    padding: 2px;
+    position: relative;
+    transition: all 0.3s ease;
+    margin: 0 auto;
 }
 
-.theme-toggle-button:hover {
-    background: var(--surface-hover);
-    color: var(--text-primary);
+.theme-toggle:hover {
     border-color: var(--primary-color);
+    background: var(--surface-hover);
 }
 
-.theme-toggle-button:focus {
+.theme-toggle:focus {
     outline: none;
     box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .theme-toggle::before {
+    transform: translateX(32px);
+}
+
 .theme-icon {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    width: 24px;
+    text-align: center;
+}
+
+.theme-icon.sun {
+    opacity: 1;
+}
+
+.theme-icon.moon {
+    opacity: 0.5;
+}
+
+body.light-mode .theme-icon.sun {
+    opacity: 0.5;
+}
+
+body.light-mode .theme-icon.moon {
+    opacity: 1;
 }
 
 /* Main Chat Area */

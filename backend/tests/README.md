@@ -148,7 +148,3 @@ Tests are designed to run in CI/CD pipelines:
 - No external dependencies required
 - Deterministic results (no flaky tests)
 - Clear failure messages
-
-## Questions?
-
-See `/Users/abhinav/.claude/plans/unified-sprouting-boole.md` for the full implementation plan.

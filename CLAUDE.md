@@ -9,8 +9,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Quick start using provided script
 ./run.sh
 
-# Manual start
-cd backend && uv run uvicorn app:app --reload --port 8000
+# Manual start (run from project root directory)
+uv run uvicorn backend.app:app --reload --port 8000
 ```
 
 ### Package Management

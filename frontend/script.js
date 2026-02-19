@@ -5,7 +5,7 @@ const API_URL = '/api';
 let currentSessionId = null;
 
 // DOM elements
-let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatButton, themeToggle, themeIcon, themeLabel;
+let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatButton, themeToggle;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     courseTitles = document.getElementById('courseTitles');
     newChatButton = document.getElementById('newChatButton');
     themeToggle = document.getElementById('themeToggle');
-    themeIcon = document.getElementById('themeIcon');
-    themeLabel = document.getElementById('themeLabel');
 
     setupEventListeners();
     initTheme();
@@ -208,13 +206,9 @@ function toggleTheme() {
 function applyTheme(theme) {
     if (theme === 'light') {
         document.body.classList.add('light-mode');
-        themeIcon.textContent = '🌙';
-        themeLabel.textContent = 'Dark Mode';
         localStorage.setItem('theme', 'light');
     } else {
         document.body.classList.remove('light-mode');
-        themeIcon.textContent = '☀️';
-        themeLabel.textContent = 'Light Mode';
         localStorage.setItem('theme', 'dark');
     }
 }
